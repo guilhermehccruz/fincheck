@@ -38,6 +38,12 @@ export default tseslint.config(
 					tabWidth: 4,
 					printWidth: 120,
 				}
+			],
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{
+					varsIgnorePattern: '_'
+				}
 			]
 		},
 	},
