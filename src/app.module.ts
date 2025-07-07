@@ -6,9 +6,10 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { BankAccountsModule } from './modules/bank-accounts/bank-accounts.module';
 
 @Module({
-	imports: [DatabaseModule, UsersModule, AuthModule, CategoriesModule],
+	imports: [DatabaseModule, UsersModule, AuthModule, CategoriesModule, BankAccountsModule],
 	controllers: [],
 	providers: [
 		{
