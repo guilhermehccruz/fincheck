@@ -5,6 +5,7 @@ import { TransactionsRepository } from 'src/shared/database/repositories/transac
 import { ValidateBankAccountOwnershipService } from '../../bank-accounts/services/validate-bank-account-ownership.service';
 import { ValidateCategoryOwnershipService } from '../../categories/services/validate-category-ownership.service';
 import { ValidateTransactionOwnershipService } from './validate-service-ownership.service';
+import { ListTransactionsFiltersDTO } from '../dto/list-transactions-filters.dto';
 
 @Injectable()
 export class TransactionsService {
@@ -21,8 +22,18 @@ export class TransactionsService {
 		return this.transactionsRepository.create({ data: { ...dto, userId } });
 	}
 
-	findAllByUserId(userId: string) {
-		return this.transactionsRepository.findMany({ where: { userId } });
+	findAllByUserId(userId: string, { year, month, bankAccountId, type }: ListTransactionsFiltersDTO) {
+		return this.transactionsRepository.findMany({
+			where: {
+				userId,
+				bankAccountId,
+				type,
+				date: {
+					gte: new Date(Date.UTC(year, month)),
+					lt: new Date(Date.UTC(year, month + 1)),
+				},
+			},
+		});
 	}
 
 	async update(userId: string, transactionId: string, dto: UpdateTransactionDto) {

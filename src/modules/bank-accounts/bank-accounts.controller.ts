@@ -21,7 +21,7 @@ export class BankAccountsController {
 	@Put(':bankAccountId')
 	update(
 		@ActiveUserId() userId: string,
-		@Param('bankAccountId', new ParseUUIDPipe()) bankAccountId: string,
+		@Param('bankAccountId', ParseUUIDPipe) bankAccountId: string,
 		@Body() dto: UpdateBankAccountDto,
 	) {
 		return this.bankAccountsService.update(userId, bankAccountId, dto);
@@ -29,7 +29,7 @@ export class BankAccountsController {
 
 	@Delete(':bankAccountId')
 	@HttpCode(HttpStatus.NO_CONTENT)
-	remove(@ActiveUserId() userId: string, @Param('bankAccountId', new ParseUUIDPipe()) bankAccountId: string) {
+	remove(@ActiveUserId() userId: string, @Param('bankAccountId', ParseUUIDPipe) bankAccountId: string) {
 		return this.bankAccountsService.remove(userId, bankAccountId);
 	}
 }
