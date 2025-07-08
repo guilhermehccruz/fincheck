@@ -10,4 +10,8 @@ export class CategoriesRepository {
 	findMany(args: Prisma.CategoryFindManyArgs) {
 		return this.prismaService.category.findMany(args);
 	}
+
+	findFirst(args: Prisma.CategoryFindFirstArgs) {
+		return this.prismaService.category.findFirst(args);
+	}
 }
